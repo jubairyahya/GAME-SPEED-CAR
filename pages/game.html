@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>SPEED CAR - Play Now</title>
     <link href="../css/styles.css" rel="stylesheet">
 </head>
+
 <body>
     <nav>
         <a href="../index.html">Home</a>
@@ -15,16 +17,22 @@
         <a href="leaderboard.html">Ranking</a>
         <a href="game.html">Play Now</a>
         <span id="usernameDisplay"></span> <!-- Display username when logged in -->
-    <button id="logoutButton" style="display:none;">Logout</button> <!-- Logout button -->
+        <button id="logoutButton" style="display:none;">Logout</button> <!-- Logout button -->
     </nav>
 
     <h1>Play the Game</h1>
     <!-- Play button -->
     <button id="startButton">Start Game</button>
-    
+
     <!-- The Canvas for the Game -->
     <canvas id="gameCanvas"></canvas>
-    <audio controls autoplay >
+    <!-- Mobile Controls -->
+    <div class="mobile-controls">
+        <button id="leftBtn">◀️</button>
+        <button id="rightBtn">▶️</button>
+    </div>
+
+    <audio controls autoplay>
         <source src="../music/over.mp3">
     </audio>
 
@@ -32,4 +40,5 @@
     <script src="../javascript/game.js"></script>
     <script src="../javascript/script.js"></script> <!-- Include the script -->
 </body>
+
 </html>

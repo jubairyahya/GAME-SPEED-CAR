@@ -28,7 +28,18 @@ obstacleImages.forEach(src => {
     img.src = src;
     loadedObstacleImages.push(img);
 });
+// ===== Responsive Canvas =====
+function resizeCanvas() {
+    canvas.width = Math.min(window.innerWidth * 0.9, 1000);
+    canvas.height = Math.min(window.innerHeight * 0.6, 600);
 
+    // Scale player car
+    const scale = canvas.width / 1000;
+    playerCarWidth = carWidth * scale;
+    playerCarHeight = carHeight * scale;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 // Initialize game state
 function initGame() {
     score = 0;
@@ -70,7 +81,7 @@ function moveObstacles() {
             endGame();
             return false;
         }
-        
+
         return true;  // Keep the obstacle if it's still in bounds and no collision
     });
 }
@@ -131,7 +142,7 @@ function saveScore(username, score) {
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
     leaderboard.push({ username, score });
     leaderboard.sort((a, b) => b.score - a.score);
-    leaderboard = leaderboard.slice(0,5);
+    leaderboard = leaderboard.slice(0, 5);
     localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
 }
 
@@ -143,7 +154,13 @@ document.addEventListener('keydown', function (event) {
         playerCarX += playerSpeed;
     }
 });
-
+// ===== Mobile Touch Controls =====
+document.getElementById('leftBtn').addEventListener('touchstart', () => {
+    playerCarX -= playerSpeed;
+});
+document.getElementById('rightBtn').addEventListener('touchstart', () => {
+    playerCarX += playerSpeed;
+});
 document.getElementById('startButton').addEventListener('click', function () {
     if (!isGameRunning) {
         initGame();
